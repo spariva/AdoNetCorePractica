@@ -42,7 +42,7 @@ namespace AdoNetCorePractica.Repositories
             return departamentos;
         }
 
-        public async Task<DatosDepratamentos> GetDatosDepartamentosAsync(string nombre)
+        public async Task<DatosDepartamentos> GetDatosDepartamentosAsync(string nombre)
         {
             string sql = "SP_DATOS_DEPARTAMENTOS";
             this.com.Parameters.AddWithValue("@nombre", nombre);
@@ -50,17 +50,15 @@ namespace AdoNetCorePractica.Repositories
             this.com.CommandText = sql;
             await this.cn.OpenAsync();
             this.reader = await this.com.ExecuteReaderAsync();
-            DatosDepratamentos departamento = new DatosDepratamentos();
+            DatosDepartamentos departamento = new DatosDepartamentos();
             while (await this.reader.ReadAsync())
             {
                 int id = int.Parse(this.reader["DEPT_NO"].ToString());
                 string dnombre = this.reader["DNOMBRE"].ToString();
                 string localidad = this.reader["LOC"].ToString();
-               
                 departamento.IdDepartamento = id;
                 departamento.Nombre = dnombre;
                 departamento.Localidad = localidad;
-               
             }
             await this.reader.CloseAsync();
             await this.cn.CloseAsync();
@@ -82,7 +80,6 @@ namespace AdoNetCorePractica.Repositories
 
             while (await this.reader.ReadAsync())
             {
-             
                 int salario = int.Parse(this.reader["SALARIO"].ToString());
                 string oficio = this.reader["OFICIO"].ToString();
                 string apellido = this.reader["APELLIDO"].ToString();
@@ -128,15 +125,12 @@ namespace AdoNetCorePractica.Repositories
 
             while (await this.reader.ReadAsync())
             {
-              
                 int salario = int.Parse(this.reader["SALARIO"].ToString());
                 string oficio = this.reader["OFICIO"].ToString();
                 string apellidoo = this.reader["APELLIDO"].ToString();
-              
                 empleados.Apellido = apellidoo;
                 empleados.Oficio = oficio;
                 empleados.Salario = salario;
-             
             }
             await this.reader.CloseAsync();
             await this.cn.CloseAsync();
