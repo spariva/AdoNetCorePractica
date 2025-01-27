@@ -75,7 +75,7 @@ namespace AdoNetCorePractica
         private async void cmbDepartamentos_SelectedIndexChanged(object sender, EventArgs e)
         {
             string nombre = this.cmbDepartamentos.SelectedItem.ToString();
-            DatosDepratamentos dept = await this.repo.GetDatosDepartamentosAsync(nombre);
+            DatosDepartamentos dept = await this.repo.GetDatosDepartamentosAsync(nombre);
             this.txtId.Text = dept.IdDepartamento.ToString();
             this.txtNombre.Text = dept.Nombre;
             this.txtLocalidad.Text = dept.Localidad;

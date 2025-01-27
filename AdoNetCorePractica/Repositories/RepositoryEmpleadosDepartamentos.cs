@@ -127,8 +127,8 @@ namespace AdoNetCorePractica.Repositories
             {
                 int salario = int.Parse(this.reader["SALARIO"].ToString());
                 string oficio = this.reader["OFICIO"].ToString();
-                string apellidoo = this.reader["APELLIDO"].ToString();
-                empleados.Apellido = apellidoo;
+                string apellido = this.reader["APELLIDO"].ToString();
+                empleados.Apellido = apellido;
                 empleados.Oficio = oficio;
                 empleados.Salario = salario;
             }
